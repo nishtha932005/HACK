@@ -1,68 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Phone Breach Detected!</title>
-    <script>
-        async function getUserInfo() {
-            let response = await fetch("https://ipapi.co/json/");
-            let data = await response.json();
-            let userAgent = navigator.userAgent;
-            let battery = await navigator.getBattery();
-            let batteryLevel = Math.round(battery.level * 100) + "%";
-
-            // Start scary sounds
-            let audio = new Audio("https://www.soundjay.com/button/beep-10.mp3");
-            audio.loop = true;
-            audio.play();
-
-            // Vibrate the phone
-            setInterval(() => { navigator.vibrate(500); }, 2000);
-
-            // Fake hack screen
-            document.body.innerHTML = `
-                <h1 style="color: red; text-align: center;">⚠️ SYSTEM BREACH DETECTED! ⚠️</h1>
-                <p style="text-align: center;">🔍 Scanning your phone...</p>
-                <p style="text-align: center;">📍 IP Address: <b>${data.ip}</b></p>
-                <p style="text-align: center;">🌎 Location: <b>${data.city}, ${data.country_name}</b></p>
-                <p style="text-align: center;">📶 Internet Provider: <b>${data.org}</b></p>
-                <p style="text-align: center;">📱 Device Info: <b>${userAgent}</b></p>
-                <p style="text-align: center;">🔋 Battery Level: <b>${batteryLevel}</b></p>
-                <h2 style="color: red; text-align: center;">⚠️ DATA UPLOAD IN <span id="countdown">30</span> SECONDS!</h2>
-                <p style="text-align: center; font-size: 20px;">💀 Dark Web Transfer in Progress... 💀</p>
-            `;
-
-            // Fake countdown timer
-            let count = 30;
-            let countdown = setInterval(() => {
-                count--;
-                document.getElementById("countdown").innerText = count;
-                if (count === 0) {
-                    clearInterval(countdown);
-                    showFBIWarning();
-                }
-            }, 1000);
-        }
-
-        function showFBIWarning() {
-            document.body.innerHTML = `
-                <h1 style="color: white; background: red; padding: 20px; text-align: center;">🚔 FBI WARNING 🚔</h1>
-                <p style="text-align: center; font-size: 20px;">Your device is under investigation for illegal activity!</p>
-                <p style="text-align: center;">Please remain on this page while we verify your identity.</p>
-                <br>
-                <h2 style="color: red; text-align: center;">📢 AUTHORITIES HAVE BEEN NOTIFIED 📢</h2>
-                <br>
-                <p style="text-align: center;">Just kidding! 😂 But see how easy it is to get tricked? Be careful online!</p>
-            `;
-        }
-    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Warning: Remote Access Detected!</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; background: black; color: red; padding: 50px; }
-        .button { padding: 15px; background: red; color: white; border: none; font-size: 18px; cursor: pointer; }
+        body {
+            background-color: black;
+            color: red;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 36px;
+            text-align: center;
+        }
+        .alert {
+            padding: 20px;
+            border: 3px solid red;
+            background-color: black;
+            color: red;
+            font-size: 24px;
+            margin-top: 50px;
+            display: none;
+        }
+        .glitch {
+            font-size: 48px;
+            animation: glitch 1s infinite linear alternate-reverse;
+        }
+        @keyframes glitch {
+            0% { text-shadow: 2px 2px 4px rgba(0,0,0,0.5), -2px -2px 4px rgba(255,255,255,0.7); }
+            100% { text-shadow: -2px -2px 4px rgba(0,0,0,0.5), 2px 2px 4px rgba(255,255,255,0.7); }
+        }
+        .hidden { display: none; }
     </style>
 </head>
 <body>
-    <h1>🚨 ALERT: Unauthorized Access Detected 🚨</h1>
-    <p>Your phone may be compromised. Click below to secure your data.</p>
-    <button class="button" onclick="getUserInfo()">Fix My Phone</button>
+    <h1>WARNING: Remote Access Detected!</h1>
+    <p class="glitch">Your device is being accessed remotely...</p>
+    
+    <div id="alert1" class="alert">Unauthorized Access Detected!</div>
+    <div id="alert2" class="alert">System Breach: Your data is being accessed!</div>
+    <div id="alert3" class="alert">Attempting to Connect to Remote Server...</div>
+
+    <script>
+        // Trigger fake system alerts
+        setTimeout(() => {
+            document.getElementById('alert1').style.display = 'block';
+        }, 1000);
+
+        setTimeout(() => {
+            document.getElementById('alert2').style.display = 'block';
+        }, 4000);
+
+        setTimeout(() => {
+            document.getElementById('alert3').style.display = 'block';
+        }, 7000);
+
+        // Glitching effect for the text
+        setInterval(() => {
+            document.querySelector('.glitch').textContent = "Distorted Data Detected!";
+        }, 2000);
+
+        // Simulate opening random apps (camera, settings, etc.)
+        setTimeout(() => {
+            alert("Opening Camera app...");
+            window.location.href = "camera://";
+        }, 10000);
+
+        setTimeout(() => {
+            alert("Opening Settings app...");
+            window.location.href = "settings://";
+        }, 15000);
+
+        // Fake voice alert (simulation)
+        setTimeout(() => {
+            alert("Voice assistant: I’m watching you...");
+        }, 20000);
+        
+        // Fake data wipe warning
+        setTimeout(() => {
+            alert("WARNING: All data will be erased in 10 seconds!");
+        }, 25000);
+
+        // Simulating endless loop
+        setInterval(() => {
+            alert("System malfunction detected! Please restart.");
+        }, 30000);
+    </script>
 </body>
 </html>
